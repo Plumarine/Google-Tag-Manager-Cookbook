@@ -13,7 +13,21 @@ There are some known limitations with auto-event tracking and they include the f
 
 - Other non GTM event code blocking auto-event tracking
 - No feature for non onclick events. eg. selected value from dropdown
-- No ability to detect errors including if an element has been removed due to website changes.
+- No ability to detect errors including if an element has been removed due to website changes. (solved with option 2 using jQuery)
+- If you have elements within elements that can be clicked on GTM will use the child element which may result in the need for multiple rules to select all the child elements. eg see code below.
+
+```html
+<li>
+  <a href="/family-center/family-filter?category=cards">
+    <h3>Cards</h3>
+    <div class="img-bg">
+    </div>
+    <div class="img-holder">
+      <img src="/~/media/creative-center/images/category-images/family-center/cards.ashx" alt="Cards" width="271" height="229">
+    </div>
+  </a>
+</li>
+```
 
 For these reasons I recommend option 2 using jQuery.
 
@@ -87,5 +101,24 @@ $( '#cccontent_0_pagecontent_0_PersonaliseButton' ).on( "click", function( event
   $('form').submit();
   },1000)
 });
+</script>
+```
+
+### Event tracking and capturing child element information
+
+```html
+<script>
+$('.categories-container li').on('click', function(event) {
+
+event.preventDefault();
+
+console.log('click');
+console.dir( $(this)[0] );
+console.log( $('h3',this)[0] );
+console.log( $('h3',this)[0].innerText );
+console.dir( event.target );
+console.log( event.type );
+
+})
 </script>
 ```
