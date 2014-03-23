@@ -62,6 +62,7 @@ There are some known limitations with auto-event tracking and they include the f
 - Other non GTM event code blocking auto-event tracking
 - No feature for non onclick events. eg. selected value from dropdown
 - No ability to detect errors including if an element has been removed due to website changes. (solved with option 2 using jQuery)
+- If the link contains `src="onclick=function(){}"` auto-event tracking will not work (http://www.conversionworks.co.uk/blog/2013/10/08/google-tag-manager-auto-event-tracking-deeper-dive/)
 - If you have elements within elements that can be clicked on GTM will use the child element which may result in the need for multiple rules to select all the child elements. eg see code below.
 
 ```html
