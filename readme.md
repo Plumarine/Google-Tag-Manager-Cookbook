@@ -228,3 +228,8 @@ function eraseCookie(name,domain) {
   createCookie(name,"",-1,domain);
 }
 ```
+
+YouTube Video Tracking
+----------------------
+
+http://www.cardinalpath.com/youtube-video-tracking-with-gtm-and-ua-a-step-by-step-guide/
