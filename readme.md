@@ -176,3 +176,26 @@ console.log( event.type );
 })
 </script>
 ```
+
+Advanced
+--------
+
+### Page Type Path Tracking
+
+```js
+// include indexOf polyfill
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
+
+var pageTypePathArr = readCookie('pageTypePath').split(' > ');
+
+var pageTypeArr = pageTypePathArr;
+if (pageTypeArr.indexOf(dataLayer[0].pageType < 0)){
+pageTypeArr.push(dataLayer[0].pageType);
+}
+var pageTypePath = pageTypeArr.sort().join(' > ')
+
+document.cookie = 'pageTypePath='+pageTypePath
+//"pageTypePath=landing > product"
+
+// pass in as custom dimension session level
+```
