@@ -60,3 +60,32 @@ if( $(elementSelector).length === 0 ){
 }
 </script>
 ```
+
+### Event Tracking delay default behaviour
+
+You may need to delay the behaviour of the event such as form submit so there is enough time for the tag to execute.
+
+In the example below you can prevent the form from submitting when the button is clicked for 1 second.
+
+```html
+<script>
+$( '#cccontent_0_pagecontent_0_PersonaliseButton' ).on( "click", function( event ) {
+  
+  // prevent the form from submitting
+  event.preventDefault();
+  
+  dataLayer.push({
+      'event' : 'event tracking',
+      'eventCategory' : 'event category',
+      'eventLabel' : 'event label',
+      'eventAction' : 'event action',
+      'eventNonInteraction' : true,
+    })
+  
+  // submit the form after 1 second (1000 milliseconds)
+  setTimeout(function(){
+  $('form').submit();
+  },1000)
+});
+</script>
+```
