@@ -31,7 +31,10 @@ There are some known limitations with auto-event tracking and they include the f
 
 For these reasons I recommend option 2 using jQuery.
 
-Event Tracking Using jQuery
+Option 1: Auto-Event Tracking
+---------------------------
+
+Option 2: Event Tracking Using jQuery
 ---------------------------
 
 ### Event Tracking with built in test
