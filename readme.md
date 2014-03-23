@@ -1,6 +1,54 @@
 Google Tag Manager Cookbook
 ===========================
 
+Learning Devtools, JavaScript & jQuery
+----------------------------
+
+Google Tag Manager can be extremely useful even if you do not know any javascript but I recommend you go through the following as it will give you the skills to get maximum use out of Google Tag Manager. 
+
+#### Chrome Dev Tools
+
+- Network tab - https://developers.google.com/chrome-developer-tools/docs/network
+- Console tab - https://developers.google.com/chrome-developer-tools/docs/console
+- Tips & Tricks - https://developers.google.com/chrome-developer-tools/docs/tips-and-tricks
+- http://code.tutsplus.com/articles/chrome-dev-tools-networking-and-the-console--net-28167
+
+#### Firefox Dev Tools
+
+- http://code.tutsplus.com/tutorials/debugging-with-the-firefox-devtools--net-36999
+
+#### JavaScript
+
+- http://jsforcats.com/
+- https://github.com/airbnb/javascript
+- http://jqfundamentals.com/chapter/javascript-basics
+
+#### jQuery
+
+- http://jqfundamentals.com/chapter/jquery-basics
+
+
+StackOverflow & GTM G+
+----------------------
+
+If you ever need help with javascript, jQuery or Google Tag Manager then the best resources are
+
+- stackoverflow.com
+- GTM Google+ Community - https://plus.google.com/communities/104865292981489764063
+
+Naming Best Practise
+--------------------
+
+### Tags
+
+Begin with|Tag Vendor|Tag Description|Pages
+----------|----------|---------------|-----
+Tag       | UA       | Page View     | All pages
+Tag       | UA       | Event         | All pages
+Auto-event module| GTM | Click Listener | All pages
+jQuery-event | jQuery | onclick download button | product page
+
+
 Event Tracking
 --------------
 
@@ -117,6 +165,8 @@ event.preventDefault();
 
 console.log('click');
 console.dir( $(this)[0] );
+// select element within this
+// code via http://stackoverflow.com/questions/306583/this-selector-and-children?lq=1
 console.log( $('h3',this)[0] );
 console.log( $('h3',this)[0].innerText );
 console.dir( event.target );
