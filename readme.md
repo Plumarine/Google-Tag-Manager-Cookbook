@@ -235,21 +235,44 @@ Detect Browsing Behaviour
 The following code detects if a user clicked through to a URL or if they pressed the back button or came through an external link. This is used for promo banner tracking. It cannot detect forward clicks
 
 ```js
-var previousPageCookieValue = readCookie('currentPage')
+var pageNavigationFuncRun = pageNavigationFuncRun || 0;
 
-if (previousPageCookieValue){
-createCookie('previousPage', previousPageCookieValue, 180, '.brother.eu')
-}
+if (pageNavigationFuncRun === 1){
 
-createCookie('currentPage', window.location.href, 180, '.brother.eu')
-
-if (previousPageCookieValue === document.referrer){
-
-console.log('internal click through')
+  console.log('pageNavigationFuncRun already completed')
 
 } else {
 
-console.log('external click through OR back button')
+  var previousPageCookieValue = readCookie('currentPage')
+  
+  if (previousPageCookieValue){
+  
+    createCookie('previousPage', previousPageCookieValue, 180, '.brother.eu')
+  
+  }
+  
+  createCookie('currentPage', window.location.href, 180, '.brother.eu')
+  
+  if (parseURLhostname(document.referrer) !== location.host){
+  
+    console.log('external click through')
+  
+  } else if (previousPageCookieValue === document.referrer){
+  
+    console.log('internal click through')
+  
+  } else if (previousPageCookieValue === readCookie('currentPage')){
+  
+    console.log('page refresh')
+  
+  } else {
+  
+    console.log('back button')
+  
+  }
+
+// declare page navigation value has run
+var pageNavigationFuncRun = 1;
 
 }
 
@@ -276,6 +299,12 @@ function readCookie(name) {
 
 function eraseCookie(name,domain) {
   createCookie(name,"",-1,domain);
+}
+
+function parseURLhostname(url) {
+    var a=document.createElement('a');
+    a.href=url;
+    return a.hostname;
 }
 ```
 
