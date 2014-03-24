@@ -233,56 +233,60 @@ function eraseCookie(name,domain) {
 }
 ```
 
-Detect Browsing Behaviour
+Detect User Page Navigation Type Browsing Behaviour
 -------------------------
 
 The following code detects if a user clicked through to a URL or if they pressed the back button or came through an external link. This is used for promo banner tracking. It cannot detect forward clicks
 
 ```js
-var pageNavigationFuncRun = pageNavigationFuncRun || 0;
-var pageNavigationType = pageNavigationType || '';
+function(){
+window.pageNavigationFuncRun = window.pageNavigationFuncRun || 0;
+window.pageNavigationType = window.pageNavigationType || '';
 
-if (pageNavigationFuncRun === 1){
+if (window.pageNavigationFuncRun === 1){
 
-  console.log('pageNavigationFuncRun already completed');
-  console.log(pageNavigationType)
+  //console.log('pageNavigationFuncRun already completed');
+  //console.log(window.pageNavigationType)
+  return window.pageNavigationType;
 
 } else {
 
   var previousPageCookieValue = readCookie('currentPage')
-  
+
   if (previousPageCookieValue){
-  
+
     createCookie('previousPage', previousPageCookieValue, 180, '.brother.eu')
-  
+
   }
-  
+
   createCookie('currentPage', window.location.href, 180, '.brother.eu')
-  
+
   if (parseURLhostname(document.referrer) !== location.host){
-  
-    console.log('external click through')
+
+    //console.log('external click through')
     pageNavigationType = 'external click through';
-  
+
   } else if (previousPageCookieValue === document.referrer){
-  
-    console.log('internal click through');
+
+    //console.log('internal click through');
     pageNavigationType = 'internal click through';
-  
+
   } else if (previousPageCookieValue === readCookie('currentPage')){
-  
-    console.log('page refresh');
+
+    //console.log('page refresh');
     pageNavigationType = 'page refresh';
-  
+
   } else {
-  
-    console.log('back button');
+
+    //console.log('back button');
     pageNavigationType = 'back button';
-  
+
   }
 
 // declare page navigation value has run
-var pageNavigationFuncRun = 1;
+window.pageNavigationFuncRun = 1;
+//console.log(window.pageNavigationType)
+return window.pageNavigationType;
 
 }
 
@@ -315,6 +319,7 @@ function parseURLhostname(url) {
     var a=document.createElement('a');
     a.href=url;
     return a.hostname;
+}
 }
 ```
 
