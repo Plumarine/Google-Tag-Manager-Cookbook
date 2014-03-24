@@ -318,10 +318,14 @@ function parseURLhostname(url) {
 }
 ```
 
-Detect CMD clicks
------------------
+Detect Right or CMD clicks
+--------------------------
 
 GTM will track onclick events but what about CMD clicks?
+
+What about right click open in new tab?  
+
+What about right click open in new window? 
 
 ```js
 $('a').on('click', function(e) {
@@ -335,9 +339,22 @@ $('a').on('click', function(e) {
 });
 ```
 
-What about right click open in new tab?  
+### Possible Solutions:
 
-What about right click open in new window?  
+
+#### A. Delay click by 1 second and use event callback.
+**CONS:**
+- Will be a delay before a user is sent to the next page affecting the user experience.
+
+
+#### B. Pass data on the next page.  
+**CONS:**  
+- You will lose all the dataLayer information about the previous page which you may want to pass as custom dimensions.
+- URLs may start to look messy.
+
+1. Pass data in the URL as #hashtag and send click on next page  
+
+2. Save data in a cookie on mousedown and then send event data on next page  
 
 YouTube Video Tracking
 ----------------------
