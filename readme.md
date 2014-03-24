@@ -314,6 +314,26 @@ function parseURLhostname(url) {
 }
 ```
 
+Detect CMD clicks
+-----------------
+
+GTM will track onclick events but what about CMD clicks?
+
+```js
+$('a').on('click', function(e) {
+  if(e.metaKey && e.shiftKey) {
+    console.log(".a - Command+Shift+Click", e);
+  } else if (e.metaKey) {
+    console.log(".a - Command+Click", e);
+  } else {
+    console.log(".a - Other click", e);
+  }
+});
+```
+
+What about right click open in new tab?  
+
+What about right click open in new window?  
 
 YouTube Video Tracking
 ----------------------
