@@ -236,10 +236,12 @@ The following code detects if a user clicked through to a URL or if they pressed
 
 ```js
 var pageNavigationFuncRun = pageNavigationFuncRun || 0;
+var pageNavigationType = pageNavigationType || '';
 
 if (pageNavigationFuncRun === 1){
 
-  console.log('pageNavigationFuncRun already completed')
+  console.log('pageNavigationFuncRun already completed');
+  console.log(pageNavigationType)
 
 } else {
 
@@ -256,18 +258,22 @@ if (pageNavigationFuncRun === 1){
   if (parseURLhostname(document.referrer) !== location.host){
   
     console.log('external click through')
+    pageNavigationType = 'external click through';
   
   } else if (previousPageCookieValue === document.referrer){
   
-    console.log('internal click through')
+    console.log('internal click through');
+    pageNavigationType = 'internal click through';
   
   } else if (previousPageCookieValue === readCookie('currentPage')){
   
-    console.log('page refresh')
+    console.log('page refresh');
+    pageNavigationType = 'page refresh';
   
   } else {
   
-    console.log('back button')
+    console.log('back button');
+    pageNavigationType = 'back button';
   
   }
 
