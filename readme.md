@@ -60,6 +60,8 @@ There are 2 methods for event tracking in Google Tag Manager.
 There are some known limitations with auto-event tracking and they include the following
 
 - Other non GTM event code blocking auto-event tracking
+- Cannot detect right click or cmd+click (mac) or ctrl+click(windows)
+- If you create an event that passes in a lot of custom dimensions you will need to add these over and over again
 - No feature for non onclick events. eg. selected value from dropdown
 - No ability to detect errors including if an element has been removed due to website changes. (solved with option 2 using jQuery)
 - If the link contains `src="onclick=function(){}"` auto-event tracking will not work (http://www.conversionworks.co.uk/blog/2013/10/08/google-tag-manager-auto-event-tracking-deeper-dive/)
@@ -78,7 +80,9 @@ There are some known limitations with auto-event tracking and they include the f
 </li>
 ```
 
-For these reasons I recommend option 2 using jQuery.
+
+
+For these reasons if you feel you will need those I recommend option 2 using jQuery.
 
 Option 1: Auto-Event Tracking
 ---------------------------
