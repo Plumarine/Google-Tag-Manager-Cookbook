@@ -229,6 +229,57 @@ function eraseCookie(name,domain) {
 }
 ```
 
+Detect Browsing Behaviour
+-------------------------
+
+The following code detects if a user clicked through to a URL or if they pressed the back button or came through an external link. This is used for promo banner tracking. It cannot detect forward clicks
+
+```js
+var previousPageCookieValue = readCookie('currentPage')
+
+if (previousPageCookieValue){
+createCookie('previousPage', previousPageCookieValue, 180, '.brother.eu')
+}
+
+createCookie('currentPage', window.location.href, 180, '.brother.eu')
+
+if (previousPageCookieValue === document.referrer){
+
+console.log('internal click through')
+
+} else {
+
+console.log('external click through OR back button')
+
+}
+
+function createCookie(name,value,days,domain) {
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    var expires = "; expires="+date.toGMTString();
+  }
+  else var expires = "";
+  document.cookie = name+"="+value+expires+"; path=/; domain="+ domain;
+}
+
+function readCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+
+function eraseCookie(name,domain) {
+  createCookie(name,"",-1,domain);
+}
+```
+
+
 YouTube Video Tracking
 ----------------------
 
